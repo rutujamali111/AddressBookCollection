@@ -7,7 +7,9 @@ public class AddressTest {
 		AddressBook book1=new AddressBook();
 		book1.add();
 		book1.PrintContact();
-		book1.edit();
+//		book1.edit();
+//		book1.PrintContact();
+		book1.delete();
 		book1.PrintContact();
 		
 	}

@@ -40,13 +40,7 @@ public class AddressBook {
 		System.out.println("Contact added into book");
 	}
 	
-	void PrintContact()
-	{
-		
-		
-		String total=person1.toString()+address.toString();
-		System.out.println(total);
-	}
+	
 	
 	public void edit() {
 		System.out.println("Enter your First name:");
@@ -90,7 +84,28 @@ public class AddressBook {
 		System.out.println("contact Edited");
 
 	}
+	
+	public void delete() {
+		System.out.println("Enter your First name:");
+		String fname = s.next();
+
+		Iterator<Contact> iterator = list.listIterator();
+		while (iterator.hasNext()&&list.size()!=0) {
+			Contact person = iterator.next();
+
+			if (fname.equals(person.getFname())) {
+				list.remove(person);
+			}
+		}
+		System.out.println("contact deleted");
+	}
 
 
+
+	public void PrintContact() {
+		// TODO Auto-generated method stub
+		System.out.println(list);
+		
+	}
 
 }
