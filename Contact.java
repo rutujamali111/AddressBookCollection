@@ -1,10 +1,11 @@
 package addressbooksystem;
 
-public class Contact {
+public class Contact extends Address{
 	private String fname;
 	private String lname;
 	private long phonenumber;
-	private Address address;
+	
+	
 	
 	public long getPhonenumber() {
 		return phonenumber;
@@ -30,20 +31,15 @@ public class Contact {
 		this.lname = lname;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
 	@Override
 	public String toString() {
-		return "Person [fname=" + fname + ", lname=" + lname + ", address="
-				+ address + "]";
+		return "Contact [fname=" + fname + ", lname=" + lname + ", phonenumber=" + phonenumber + ", getCity()="
+				+ getCity() + ", getZip()=" + getZip() + ", getState()=" + getState()  + "]";
 	}
 
+	
+
+	
 
 
 }

@@ -1,49 +1,56 @@
 package addressbooksystem;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressTest {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		AddressBook book1=new AddressBook();
-		Scanner sc=new Scanner(System.in);
+	static Scanner sc=new Scanner(System.in);
+	public static Map<String, List<Contact>> dictionary=new HashMap<String, List<Contact>>();
+	public static void initialize()  
+	{
+		
+		System.out.println("Welcome to AddressBook management...");
+		System.out.println("type 1 to add new AddressBook");
+		System.out.println("type 2 to enter into present AddressBook");
 		int option;
 		do
 		{
-			System.out.println("--- Address Book Management ---\n");
-            System.out.println("\t--MENU--");
 			System.out.println("Enter operation number..");
 			option=sc.nextInt();
 			if(option==0)
+				return;
+			else if(option==1)
 			{
-				System.exit(0);
+				System.out.println("give a name to your AddressBook..");
+				String name=sc.next();
+				if(dictionary.containsKey(name))
+					System.out.println("book exist .Please try another name");
+				else
+				{
+					AddressBook book=new AddressBook(name);
+					book.welcome(name);
+					ArrayList<Contact> listOfContacts=book.ReturnListOfContacts();
+					dictionary.put(name, listOfContacts);
+					System.out.println(dictionary);
+				}
 			}
-			switch (option)
+			else if(option==2)
 			{
-			case 1:
-				book1.add();
-				break;
-			case 2:
-				book1.PrintContact();
-				break;
-			case 3:
-				book1.edit();
-				break;
-			case 4:
-				book1.delete();
-				break;
-			default:
-				break;
+				System.out.println("select dictionary from "+dictionary.keySet());
+				String choice=sc.next();
+				
 			}
-			 System.out.println("Enter zero to exit     \n");
-            System.out.println("1: Add New Person      ");
-            System.out.println("2: Display Records     ");
-            System.out.println("3: Edit Person     ");
-            System.out.println("4: Delete Person     ");
-           
+			else System.out.println("invalid operation");
 		}
 		while(option!=0);
+		
 	}
-
+	public static void main(String[] args) {
+		initialize();
+		System.out.println(dictionary);
+	}
+		
 }
