@@ -3,7 +3,7 @@ package addressbooksystem;
 public class Address {
 	private String city;
 	private long zip;
-	private String state;
+	private String state;	
 
 	public String getCity() {
 		return city;

@@ -2,7 +2,9 @@ package addressbooksystem;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook{
 	String name;
@@ -10,14 +12,23 @@ public class AddressBook{
 	{
 		name=this.name;
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	Scanner s = new Scanner(System.in);
 	ArrayList<Contact> list = new ArrayList<Contact>();
 	Contact person1 = new Contact();
 //	Address address = new Address();
 	
-	public void welcome(String name2) {
+	public void welcome() {
 		
-		System.out.println("welcome to "+name2+" directory");
+		System.out.println("welcome to "+name+" directory");
 		System.out.println("Want to perform any operation ? then type 1");
 		int option=s.nextInt();
 		if(option==1)
@@ -80,8 +91,15 @@ public class AddressBook{
 		
 		System.out.println("Enter the First name:");
 		String fname = s.next();
-		person1.setFname(fname);
-
+		List<String> list2=list.stream().filter(p->p.getFname().equalsIgnoreCase(fname)).map(p->p.getFname()).collect(Collectors.toList());
+		if(list2.size()==0)
+			person1.setFname(fname);
+		else
+		{
+			System.out.println("person with this name exist.");
+			start();
+			
+		}
 		System.out.println("Enter the Last name:");
 		String lname = s.next();
 		person1.setLname(lname);
@@ -176,6 +194,11 @@ public class AddressBook{
 		System.out.println("contacts in dictionary" +name );
 		System.out.println(list);
 		
+	}
+
+	@Override
+	public String toString() {
+		return "AddressBook [name=" + name +list+ "]";
 	}
 
 

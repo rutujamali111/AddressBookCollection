@@ -8,7 +8,9 @@ import java.util.Scanner;
 
 public class AddressTest {
 	static Scanner sc=new Scanner(System.in);
+	public static String name;
 	public static Map<String, List<Contact>> dictionary=new HashMap<String, List<Contact>>();
+	public static ArrayList<AddressBook> ObectsSet=new ArrayList<AddressBook>();
 	public static void initialize()  
 	{
 		
@@ -25,24 +27,45 @@ public class AddressTest {
 			else if(option==1)
 			{
 				System.out.println("give a name to your AddressBook..");
-				String name=sc.next();
+				 name=sc.next();
 				if(dictionary.containsKey(name))
 					System.out.println("book exist .Please try another name");
 				else
 				{
 					AddressBook book=new AddressBook(name);
-					book.welcome(name);
+					book.setName(name);
+					book.welcome();
 					ArrayList<Contact> listOfContacts=book.ReturnListOfContacts();
 					dictionary.put(name, listOfContacts);
 					System.out.println(dictionary);
+					
+					ObectsSet.add(book);
+					System.out.println(ObectsSet);
 				}
 			}
 			else if(option==2)
 			{
-				System.out.println("select dictionary from "+dictionary.keySet());
-				String choice=sc.next();
+				AddressBook book=null;
+				System.out.println("select Addressbook from below list: "+dictionary.keySet());
+				name=sc.next();
+				boolean flag=true;
+				for(AddressBook b:ObectsSet)
+				{
+					if(b.getName().equalsIgnoreCase(name))
+					{
+						book=b;
+						b.ReturnListOfContacts();
+						b.welcome();
+						flag=false;
+					}
+						
+					
+				}
+				if(flag==true)
+					System.out.println("there is no addressbook with this name.");
 				
 			}
+			
 			else System.out.println("invalid operation");
 		}
 		while(option!=0);

@@ -5,8 +5,7 @@ public class Contact extends Address{
 	private String lname;
 	private long phonenumber;
 	
-	
-	
+		
 	public long getPhonenumber() {
 		return phonenumber;
 	}
