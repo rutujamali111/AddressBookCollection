@@ -68,6 +68,27 @@ public class Dictionary {
 		}
 	}
 	
+	public void SortByCity()
+	{
+		Map<String, List<Contact>> map=new HashMap<String, List<Contact>>();
+		Set<String> s=new HashSet<String>();
+		for(AddressBook b:ObectsSet)
+		{
+			List<Contact> c=b.ReturnListOfContacts();
+			List<String> distinctCity=c.stream().map(Contact::getCity).distinct().collect(Collectors.toList());
+			s.addAll(distinctCity);
+		}
+		for (String city : s)
+		{
+			ArrayList<Contact> c=new ArrayList<Contact>();
+			for(AddressBook b:ObectsSet)
+			{
+				c.addAll(b.viewByCity(city));
+			}
+			map.put(city, c);
+		}
+	}
+	
 	public void initialize()  
 	{
 		
@@ -75,6 +96,7 @@ public class Dictionary {
 		System.out.println("type 1 to add new AddressBook");
 		System.out.println("type 2 to enter into present AddressBook");
 		System.out.println("type 3 to search person");
+		System.out.println("type 4 to sort list by city");
 		int option;
 		do
 		{
@@ -92,6 +114,9 @@ public class Dictionary {
 					break;
 				case 3:
 					SearchPerson();
+					break;
+				case 4:
+					SortByCity();
 					break;
 				default:
 					System.out.println("invalid operation");
