@@ -128,9 +128,10 @@ public class AddressBook{
 		List<String> directory=list.stream().filter(p->p.getCity().equalsIgnoreCase(town)).map(p->p.getFname()).collect(Collectors.toList());
 		System.out.println(directory);
 	}
-	public  List<Contact> viewByCity(String town)
-	{
-		List<Contact> sortedContacts=list.stream().filter(p->p.getCity().equalsIgnoreCase(town)).collect(Collectors.toList());
+
+	public List<Contact> viewByCity(String town) {
+		List<Contact> sortedContacts = list.stream().filter(p -> p.getCity().equalsIgnoreCase(town))
+				.collect(Collectors.toList());
 		return sortedContacts;
 	}
 	

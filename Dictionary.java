@@ -3,6 +3,7 @@ package addressbooksystem;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ public class Dictionary {
 	public  String name;
 	public  Map<String, List<Contact>> dictionary=new HashMap<String, List<Contact>>();
 	public  ArrayList<AddressBook> ObectsSet=new ArrayList<AddressBook>();
-	
+	Map<String, List<Contact>> map=new HashMap<String, List<Contact>>();
 	
 	
 	public void AddBook()
@@ -70,7 +71,7 @@ public class Dictionary {
 	
 	public void SortByCity()
 	{
-		Map<String, List<Contact>> map=new HashMap<String, List<Contact>>();
+		
 		Set<String> s=new HashSet<String>();
 		for(AddressBook b:ObectsSet)
 		{
@@ -87,6 +88,20 @@ public class Dictionary {
 			}
 			map.put(city, c);
 		}
+		
+	}
+	public void countByCity()
+	{
+		Map<String, Integer> m=new HashMap<String, Integer>();
+		SortByCity();
+		Set<String> keyset=map.keySet();
+		for (String s : keyset)
+		{
+			Integer count=map.get(s).size();
+			m.put(s, count);
+		}
+		
+		System.out.println(m);
 	}
 	
 	public void initialize()  
@@ -97,6 +112,7 @@ public class Dictionary {
 		System.out.println("type 2 to enter into present AddressBook");
 		System.out.println("type 3 to search person");
 		System.out.println("type 4 to sort list by city");
+		System.out.println("type 5 to count person by city");
 		int option;
 		do
 		{
@@ -117,6 +133,10 @@ public class Dictionary {
 					break;
 				case 4:
 					SortByCity();
+					System.out.println(map);
+					break;
+				case 5:
+					countByCity();
 					break;
 				default:
 					System.out.println("invalid operation");
