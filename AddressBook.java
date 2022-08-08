@@ -22,8 +22,8 @@ public class AddressBook{
 	}
 
 	Scanner s = new Scanner(System.in);
-	ArrayList<Contact> list = new ArrayList<Contact>();
-	Contact person1 = new Contact();
+	public  ArrayList<Contact> list = new ArrayList<Contact>();
+	
 //	Address address = new Address();
 	
 	public void welcome() {
@@ -88,7 +88,7 @@ public class AddressBook{
 	
 	
 	public void add() {
-		
+		Contact person1 = new Contact();
 		System.out.println("Enter the First name:");
 		String fname = s.next();
 		List<String> list2=list.stream().filter(p->p.getFname().equalsIgnoreCase(fname)).map(p->p.getFname()).collect(Collectors.toList());
@@ -122,6 +122,16 @@ public class AddressBook{
 		
 		list.add(person1);
 		System.out.println("Contact added into "+name);
+	}
+	public void searchPerson(String town)
+	{
+		List<String> directory=list.stream().filter(p->p.getCity().equalsIgnoreCase(town)).map(p->p.getFname()).collect(Collectors.toList());
+		System.out.println(directory);
+	}
+	public  List<Contact> viewByCity(String town)
+	{
+		List<Contact> sortedContacts=list.stream().filter(p->p.getCity().equalsIgnoreCase(town)).collect(Collectors.toList());
+		return sortedContacts;
 	}
 	
 	public ArrayList<Contact> ReturnListOfContacts()
